@@ -122,7 +122,7 @@ class ICMPSocket():
 		try:
 			response, _ = soc.recvfrom(1024)
 		except socket.timeout:
-			print("Превышено время ожидания")
+			print("Timeout exceeded")
 			exit()
 
 		total_time = time() - start_time
@@ -157,7 +157,7 @@ class ICMP_Client(ICMPSocket):
 		soc = self.create_socket(ttl = self.ttl,timeout = self.timeout)
 
 	
-		print("Обмен пакетами с [{}],с 64 байтами данных.\n".format(self.address))
+		print("package exchange with [{}],with 64 bytes.\n".format(self.address))
 
 		n = self.count
 		while n > 2 or n == True:
@@ -197,15 +197,15 @@ class ICMP_Client(ICMPSocket):
 
 					n -= 1
 
-				print("Ответ от {}: число байт={}, время={}мс, TTL={}".format(self.address,64,time,self.ttl))
+				print("Response from {}: number of butes={}, time={}мс, TTL={}".format(self.address,64,time,self.ttl))
 			
 			except KeyboardInterrupt:
 				break
 
 
 		mid_t //= received_packets
-		print("\nСтатистика: отправлено={}, получено={},потеряно={}".format(sended_packets,received_packets,sended_packets - received_packets))
-		print("    Время приема-передачи: min={}мс, max={}мс, mid={}мс".format(min_t,max_t,mid_t))
+		print("\nstatistics: sent={}, received={},lost={}".format(sended_packets,received_packets,sended_packets - received_packets))
+		print("    Transmission time: min={}ms, max={}ms, mid={}ms".format(min_t,max_t,mid_t))
 
 
 
@@ -230,7 +230,7 @@ class Applying_settings():
 			try:
 				address = socket.gethostbyname(self._settings["address"])
 			except socket.gaierror:
-				print("Несуществует такого узла\nПроверьте имя узла")
+				print("No such node exists!\nCheck node name!")
 				exit()
 			cl = ICMP_Client(address)
 			cl.ping()
