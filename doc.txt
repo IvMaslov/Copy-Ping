@@ -1,0 +1,10 @@
+Usage: ping.py [-t <1>] [-n <число>] [-i <TTL>] [-w <сек>] address
+
+Settings:
+  -t <1>	Endless messaging
+
+  -n <number>	Sending a certain number of messages
+
+  -i <TTL>	Packet lifetime
+
+  -w <time>	Waiting time for each response (sec)
